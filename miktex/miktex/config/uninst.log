@@ -1,0 +1,17 @@
+[files]
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\MiKTeX\MiKTeX Console.lnk
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\MiKTeX\TeXworks.lnk
+[hklm]
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;MiKTeX is a scalable TeX distribution for Windows, Linux and macOS.
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;C:\Users\ronyelly\Documents\TradutorAI\miktex\miktex/bin/x64\miktex-console_admin.exe,0
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;MiKTeX
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;23.10
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;https://miktex.org/support
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;C:\Users\ronyelly\Documents\TradutorAI\miktex
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;NoModify
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;NoRepair
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;MiKTeX.org
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;https://miktex.org/support
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;C:\Users\ronyelly\Documents\TradutorAI\miktex\miktex/bin/x64\miktex-console_admin.exe --admin --start-page cleanup
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;https://miktex.org/about
+Software\Microsoft\Windows\CurrentVersion\Uninstall\MiKTeX;https://miktex.org

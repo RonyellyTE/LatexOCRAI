@@ -1,0 +1,98 @@
+%%
+%% This is file `mathcolor.ltx',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mathcolor.dtx  (with options: `code')
+%% 
+%% The source is maintained by the LaTeX Project team and bug
+%% reports for it can be opened at https://latex-project.org/bugs/
+%% (but please observe conditions on bug reports sent to that address!)
+%% 
+%% 
+%% File: mathcolor.dtx (C) Copyright 2021-2022
+%%% From File: mathcolor.dtx
+\def\mathcolorversion{v1.0b}
+\def\mathcolordate{2022/01/28}
+
+
+\ifcsname mathcolor\endcsname \endinput \fi
+\ExplSyntaxOn
+\seq_new:N \g__mathcolor_seq
+\DeclareDocumentCommand \mathcolor { o m m } {
+  \mode_if_math:F { \non@alpherr {\mathcolor\space} }
+  \seq_gpush:No \g__mathcolor_seq \current@color
+  \group_insert_after:N \use_none:n
+  \IfValueTF{#1} { \color[#1]{#2} }{ \color{#2} }
+  #3
+  \__mathcolor_scan_for_scripts:w
+}
+\cs_new_protected:Npn \__mathcolor_scan_for_scripts:w {
+  \__mathcolor_peek_catcode_ignore_filler_expand:NTF \c_math_subscript_token
+    { \__mathcolor_handle_scripts:Nw }
+    { \token_if_math_superscript:NTF \l_peek_token
+      { \__mathcolor_handle_scripts:Nw }
+      { \token_case_meaning:NnTF \l_peek_token
+          {
+            \limits   { \limits }
+            \nolimits { \nolimits }
+            \displaylimits { \displaylimits }
+          }
+          { \__mathcolor_scan_for_scripts:w \use_none:n }
+          { \peek_meaning_remove:NTF '
+            { \__mathcolor_handle_scripts:Nw ^\c_group_begin_token \prim@s }
+            { \reset@color
+              \seq_gpop:NN \g__mathcolor_seq \current@color
+            }
+          }
+      }
+    }
+}
+
+\cs_new_protected:Npn \__mathcolor_handle_scripts:Nw #1 {
+    #1 \c_group_begin_token \c_group_begin_token
+    \seq_get:NN \g__mathcolor_seq \current@color
+    \set@color
+    \group_insert_after:N \c_group_end_token
+    \group_insert_after:N \__mathcolor_scan_for_scripts:w
+    \__mathcolor_peek_catcode_ignore_filler_expand:NTF \c_group_begin_token
+      { \peek_catcode_remove:NT \c_group_begin_token { } }
+      { \__mathcolor_handle_unbraced_script:N }
+  }%    \end{macrocode}
+
+\cs_new_protected:Npn \__mathcolor_handle_unbraced_script:N #1 {
+  #1 \c_group_end_token }
+\tl_new:N \l__mathcolor_peek_tmp_tl
+\cs_new_protected:Npn \__mathcolor_peek_catcode_ignore_filler_expand:NTF #1#2#3
+  {
+    \tl_set:Nn \l__mathcolor_peek_tmp_tl
+      { \token_if_eq_catcode:NNTF \l_peek_token #1 {#2} {#3} }
+    \__mathcolor_peek_expand:w
+  }
+\cs_new_protected:Npn \__mathcolor_peek_expand:w
+  {
+    \exp_after:wN \peek_catcode_remove:NTF
+    \exp_after:wN \c_space_token
+    \exp_after:wN \__mathcolor_peek_test_expand:w
+    \exp_after:wN \__mathcolor_peek_test_relax:w
+    \exp:w \exp_end_continue_f:w
+  }
+\cs_new_protected:Npn \__mathcolor_peek_test_expand:w
+  {
+    \token_if_expandable:NTF \l_peek_token
+      { \__mathcolor_peek_expand:w }
+      { \l__mathcolor_peek_tmp_tl      }
+  }
+\cs_new_protected:Npn \__mathcolor_peek_test_relax:w
+   {
+    \peek_meaning_remove:NTF \scan_stop:
+      { \__mathcolor_peek_expand:w }
+      { \__mathcolor_peek_test_expand:w   }
+   }
+\ExplSyntaxOff
+
+%%%%%%%%%%%%%%%%
+\endinput
+%%
+%% End of file `mathcolor.ltx'.
